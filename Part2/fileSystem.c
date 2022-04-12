@@ -7,6 +7,23 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+typedef struct inode inode;
+
+struct inode {
+  char name[8];
+  int32_t size;
+  int32_t blockPointers[8]; //direct block pointers
+  int32_t used;
+};
+
+struct inode inodes[16];
+
+struct super_block {
+  char free_block_list[128];
+  inode i[16];
+};
+
+
 void create(char name[8], int32_t size)
 { //create a file with this name and this size
 
@@ -33,8 +50,13 @@ void create(char name[8], int32_t size)
 
 void delete(char name[8])
 {
+  printf("Deleting file...");
   // Delete the file with this name
-
+  for(int j=0; j<16; j++) { //file system supports a max of 16 files
+    if(inodes[j].used == 1) {
+      
+    }
+  }
   // Step 1: Look for an inode that is in use with given name
   // by searching the collection of objects
   // representing inodes within the super block object.
