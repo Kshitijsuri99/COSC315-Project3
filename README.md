@@ -39,3 +39,16 @@ virtual address v2 is in page number p and offset d
 Sample Output: 
 
 <img src="https://github.com/Kshitijsuri99/COSC315-Project3/blob/main/Part1/partA_sample.png"/>
+
+## Part-2: File Systems
+
+All the code requested to be implemented can be found in the Part 2 folder in fileSystem.c file
+
+5 functions that are asked to be implemented were:
+Create, Delete, Read, Write and LS. They all have been implemented 
+
+To create disk 0 
+We had to make some changes in the source code as it was giving compilation error.
+We had to add a line of code in lab3.create_fs.c "#include <stdlib.h>"
+After adding the line the code was compiled using "gcc lab3.create_fs.c"
+Then "./a.out disk0" function was executed which further led to adding the file disk0
