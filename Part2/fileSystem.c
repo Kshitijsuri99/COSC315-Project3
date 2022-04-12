@@ -14,6 +14,7 @@ struct inode {
   int32_t used;
 };
 
+FILE *disk;
 struct inode inodes[16];
 
 struct super_block {
@@ -131,12 +132,28 @@ void read(char name[8], int32_t blockNum, char buf[1024])
 
 void write(char name[8], int32_t blockNum, char buf[1024])
 {
-
+    
    // write this block to this file
-   // Return an error if and when appropriate.
+   // Return an error if and when appropriate 
 
-   // Step 1: Locate the inode for this file as in Step 1 of delete.
+    int availableInode = 16;
+    for(int i = 1; i<16; i++){
 
-   // Step 2: Seek to blockPointers[blockNum] and write buf to disk.
-   
+        if(inodes[i].name == name) {
+            printf("File Already Exists or the inode is being used...");
+        }
+
+        if(inodes[i].used == 1) {
+            printf("inode already in use...");
+        }
+        else if (inodes[i].used == 0)
+        {
+            availableInode = i;
+            break;
+        }
+
+        FILE *disk = fopen("disk0", "r");
+        fseek(disk, blockNum*1024, 1);
+        fwrite(buf, 1024, 1, disk);
+    }
 } // end write
