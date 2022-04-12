@@ -108,6 +108,9 @@ void ls(void)
   // List names of all files on disk
 
   // Step 1: Print the name and size fields of all used inodes.
+  for(int i=0; i<16; i++) {
+    printf("File name: %ssize: %d", inodes[i].name, inodes[i].size);
+  } 
 
 } // End ls
 
