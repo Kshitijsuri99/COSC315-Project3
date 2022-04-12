@@ -1,5 +1,11 @@
 # COSC315-Project3
 
+Team Members:
+Florencia Chomski, Ahmad Raza Jamal, Kshitij Suri
+ 
+### Contributions
+All team members contributed to the success of this project. 
+
 ## Part-1: Memory Management - paging 
 
 The first part of the project implements a virtual address to physical address translator. The n lowest significant bits represents the offset, and the rest of the m bits represent the page number.  
@@ -27,3 +33,5 @@ Output: Virtual addresses with the page number p and offset d
 **virtual address v1 is in page number p and offset d
 virtual address v2 is in page number p and offset d
 ...**
+
+Sample Output: 
