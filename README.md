@@ -30,8 +30,10 @@ e.g.
 
 Output: Virtual addresses with the page number p and offset d
 
-**virtual address v1 is in page number p and offset d
+**virtual address v1 is in page number p and offset d <br/>
 virtual address v2 is in page number p and offset d
 ...**
 
 Sample Output: 
+
+<img src="https://github.com/Kshitijsuri99/COSC315-Project3/blob/main/Part1/partA_sample.png"/>
