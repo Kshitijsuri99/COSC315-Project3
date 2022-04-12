@@ -30,7 +30,7 @@ e.g.
 
 Output: Virtual addresses with the page number p and offset d
 
-**virtual address v1 is in page number p and offset d
+**virtual address v1 is in page number p and offset d <br/>
 virtual address v2 is in page number p and offset d
 ...**
 
