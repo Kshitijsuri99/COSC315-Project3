@@ -9,18 +9,18 @@ The length of the number is always 16 bits and any number with more than 16 bits
 **n - the n lowest significant bits that represent the offset**
 **m - the next m bits that represent the page number; assume that n+m is always 16**
 
-Input: A .txt file with first two lines representing n and m respectively and then n random integers to translate.
+Input: A .txt file with the first two lines representing n and m respectively and then n random integers to translate.
 e.g. 
 
-`3
-13
-14503
-15603
-13450
-14560
-20342
-23233
-33451`
+3 <br/>
+13 <br/>
+14503 <br/>
+15603 <br/>
+13450 <br/>
+14560 <br/>
+20342 <br/>
+23233 <br/>
+33451 <br/>
 
 Output: Virtual addresses with the page number p and offset d
 
