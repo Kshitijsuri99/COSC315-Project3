@@ -52,3 +52,5 @@ We had to make some changes in the source code as it was giving compilation erro
 We had to add a line of code in lab3.create_fs.c "#include <stdlib.h>"
 After adding the line the code was compiled using "gcc lab3.create_fs.c"
 Then "./a.out disk0" function was executed which further led to adding the file disk0
+
+Due to a lack of experience from our team members in C, we struggled to implement the main method to run the second part. We've used several resources including the lecture materials and still struggled to complete. We focused the little time we had on implementing the five methods highlighted in the assignment instructions on Canvas. Given more time, we would have been able to do more research into the language and its specifics in order to be able to successfully complete this project. 
