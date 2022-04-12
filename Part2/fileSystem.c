@@ -47,8 +47,6 @@ void create(char name[8], int32_t size)
 
 void delete(char name[8])
 {
-  printf("Deleting file...");
-
   // Step 1: Look for an inode that is in use with given name by searching the collection of objects
   // representing inodes within the super block object.
   int iIDX;
@@ -63,9 +61,9 @@ void delete(char name[8])
  
   // Step 2: Free blocks of the file being deleted by updating
   // the object representing the free block list in the super block object.
-  struct inode node = inodes[iIDX];   //set all block pointers to zero for the file being deleted
+  struct inode node = inodes[iIDX];   //select the file being deleted
   for(int k=0; k<8; k++) {   //max size of a file is 8 blocks
-    node.blockPointers[k] = 0;
+    node.blockPointers[k] = 0; //set all block pointers to zero
   }
 
   // Step 3: Mark inode as free.
