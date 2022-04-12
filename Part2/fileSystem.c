@@ -131,13 +131,20 @@ void read(char name[8], int32_t blockNum, char buf[1024])
   
    // Step 2: Seek to blockPointers[blockNum] and read the block
    // from disk to buf.
-   int offset = sizeof(buf) * (node.blockPointers[blockNum]);
+   if(blockNum < inodes->size-1) {
+     int offset = sizeof(buf) + (1024 * node.blockPointers[blockNum]);
 
-   FILE *iFile = fopen("lab3input.txt", "r");      // open the file
-    char fName[8];
-    fscanf(iFile, "%s", fName);                  // get the filename of the disk file
-    disk = fopen(fName, "rb");                   // open the disk file
-
+      FILE *iFile = fopen("lab3input.txt", "r");      // open the file
+      if(iFile == NULL) {
+        printf("ERROR: File cannot open - likely, file does not exist");
+      } else {
+        char fName[8];
+        fscanf(iFile, "%s", fName);                  // get the filename of the disk file
+        disk = fopen(fName, "rb");                   // open the disk file
+      }
+   } else {
+     printf("ERROR: blockNum exceeds size-1");
+   }
 } // End read
 
 
