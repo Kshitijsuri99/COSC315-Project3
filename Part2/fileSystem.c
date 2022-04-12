@@ -117,15 +117,26 @@ void ls(void)
 
 void read(char name[8], int32_t blockNum, char buf[1024])
 {
-
    // read this block from this file
    // Return an error if and when appropriate. For instance, make sure
    // blockNum does not exceed size-1.
-
    // Step 1: Locate the inode for this file as in Step 1 of delete.
-
+   int iIDX;
+   for(int j=0; j<16; j++) { //file system supports a max of 16 files
+    if(inodes[j].used == 1 || inodes[j].name == name) {
+      iIDX = j;
+    }
+  }
+   struct inode node = inodes[iIDX];   //select the file being deleted
+  
    // Step 2: Seek to blockPointers[blockNum] and read the block
    // from disk to buf.
+   int offset = sizeof(buf) * (node.blockPointers[blockNum]);
+
+   FILE *iFile = fopen("lab3input.txt", "r");      // open the file
+    char fName[8];
+    fscanf(iFile, "%s", fName);                  // get the filename of the disk file
+    disk = fopen(fName, "rb");                   // open the disk file
 
 } // End read
 
