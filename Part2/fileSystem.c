@@ -69,8 +69,11 @@ void delete(char name[8])
   }
 
   // Step 3: Mark inode as free.
+  inodes[iIDX] = node;
+  inodes[iIDX].used = 0;
 
   // Step 4: Write the entire super block back to disk.
+  writeSuperBlock();
 
 } // End Delete
 
