@@ -31,16 +31,44 @@ void create(char name[8], int32_t size)
   // If none exist, then return an error.
   // Also make sure that no other file in use with the same name exists.
 
+    int availableInode = 16;
+    printf("Creating a file...");
+    for(int i=0; i<16; i++) { //file system supports a max of 16 files
+        if(inodes[i].name == name) {
+            printf("File Already Exists or the inode is being used...");
+        }
+
+        if(inodes[i].used == 1) {
+            printf("inode already in use...");
+        }
+        else if (inodes[i].used == 0)
+        {
+            availableInode = i;
+            break;
+        }
+    }
+
   // Step 2: Look for a number of free blocks equal to the size variable
   // passed to this method. If not enough free blocks exist, then return an error.
+
+    if(availableInode == 16){
+        printf("Not enough blocks free!");
+    }
+
+    for(int i = 0; i < size; i++){
+        inodes[availableInode].blockPointers[i] = (availableInode+1);
+    }
 
   // Step 3: Now we know we have an inode and free blocks necessary to
   // create the file. So mark the inode and blocks as used and update the rest of
   // the information in the inode.
-
+    strcpy(inodes[availableInode].name, name);
+    inodes[availableInode].size = size;
+    inodes[availableInode].used = 1;
   // Step 4: Write the entire super block back to disk.
   //	An easy way to do this is to seek to the beginning of the disk
   //	and write the 1KB memory chunk.
+  writeSuperBlock();
 } // End Create
 
 
