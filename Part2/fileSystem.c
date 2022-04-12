@@ -7,8 +7,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-typedef struct inode inode;
-
 struct inode {
   char name[8];
   int32_t size;
@@ -20,7 +18,6 @@ struct inode inodes[16];
 
 struct super_block {
   char free_block_list[128];
-  inode i[16];
 };
 
 
@@ -51,19 +48,25 @@ void create(char name[8], int32_t size)
 void delete(char name[8])
 {
   printf("Deleting file...");
-  // Delete the file with this name
+
+  // Step 1: Look for an inode that is in use with given name by searching the collection of objects
+  // representing inodes within the super block object.
+  int iIDX;
   for(int j=0; j<16; j++) { //file system supports a max of 16 files
-    if(inodes[j].used == 1) {
-      
+    if(inodes[j].used == 1 || inodes[j].name == name) {
+      iIDX = j;
     }
   }
-  // Step 1: Look for an inode that is in use with given name
-  // by searching the collection of objects
-  // representing inodes within the super block object.
   // If it does not exist, then return an error.
-
+  if(iIDX != 15)
+    printf("ERROR: File does not exist");
+ 
   // Step 2: Free blocks of the file being deleted by updating
   // the object representing the free block list in the super block object.
+  struct inode node = inodes[iIDX];   //set all block pointers to zero for the file being deleted
+  for(int k=0; k<8; k++) {   //max size of a file is 8 blocks
+    node.blockPointers[k] = 0;
+  }
 
   // Step 3: Mark inode as free.
 
